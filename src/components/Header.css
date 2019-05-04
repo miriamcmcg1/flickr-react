@@ -1,0 +1,30 @@
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    height: 4em;
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    width: 100%;
+    z-index: 1;
+}
+
+.navbar > div {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 1em;
+}
+
+
+.title-div > a {
+    text-decoration: none;
+}
