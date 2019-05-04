@@ -15,7 +15,7 @@ class Image extends Component {
   render() {
     return (
       <div>
-        <Header isHomePage={true}/>
+        <Header isHomePage={false}/>
         <div className='div-image'>
             <img src={this.url} alt={this.props.match.params.title} className='image-div'/>
             <GridListTileBar

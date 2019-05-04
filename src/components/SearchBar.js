@@ -38,7 +38,7 @@ class SearchBar extends Component {
   render() {
     return (
         <div className='searchbar-div'>
-            <input className="country-input" type="text" defaultValue={this.props.city}  placeholder='City'onChange={event => this.onCityChange(event)} />
+            <input className="country-input" type="text" defaultValue={this.props.city}  placeholder='City' onChange={event => this.onCityChange(event)} />
             <input className="limit-input" type="number" defaultValue={this.props.limit} onChange={event => this.onLimitChange(event)} min='0' max='200' step='1'/>
             <div>
                 <IconButton className="search-icon" size="small" onClick={event => this.onSubmitSearch(event)}>

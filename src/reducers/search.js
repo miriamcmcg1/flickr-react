@@ -1,11 +1,10 @@
-
 const initialState = function() {
   const storage = JSON.parse(localStorage.getItem('search'))
-  if(storage.limit === '' || storage.city === '') {
-    return {city: 'cuba', limit: 21}
+  if(storage !== null) {
+    return {city: storage.city, limit: storage.limit }
   }
   else {
-    return {city: storage.city, limit: storage.limit }
+    return {city: 'cuba', limit: 21}
   }
 }
 
