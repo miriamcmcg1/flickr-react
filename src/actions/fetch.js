@@ -7,7 +7,11 @@ export const fetchSearchImages = async function(city, limit) {
     if (response.status === 200) {
       let images = response.data.photos.photo.map(img => {
         return {
-          url: `https://farm${img.farm}.staticflickr.com/${img.server}/${img.id}_${img.secret}.jpg`,
+          url: getUrl({
+            farm:img.farm, 
+            server: img.server, 
+            id: img.id, 
+            secret: img.secret }),
           title: img.title,
           owner: img.owner,
           tags: img.tags.split(' '),
@@ -21,4 +25,15 @@ export const fetchSearchImages = async function(city, limit) {
     } else {
       return []
     }
-  }
+}
+
+export const getUrl =function(photo) {
+  const {
+    id,
+    farm,
+    secret,
+    server
+  } = photo;
+
+  return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
+}

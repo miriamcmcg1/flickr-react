@@ -2,10 +2,15 @@ import React, { Component } from "react"
 import Header from "./Header"
 import GridListTileBar from "@material-ui/core/GridListTileBar"
 import './Image.css'
-
+import { getUrl } from '../actions/fetch'
 
 class Image extends Component {
-  url = `https://farm${this.props.match.params.farm}.staticflickr.com/${this.props.match.params.server}/${this.props.match.params.id}_${this.props.match.params.secret}.jpg`
+  url = getUrl({
+    farm: this.props.match.params.farm,
+    server: this.props.match.params.server,
+    id: this.props.match.params.id,
+    secret: this.props.match.params.secret
+  })
 
   render() {
     return (
