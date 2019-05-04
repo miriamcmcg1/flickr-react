@@ -8,7 +8,20 @@ import './SearchBar.css'
 class SearchBar extends Component {
   constructor(props) {
     super(props)
-    this.state = ({city: this.props.city, limit: this.props.limit, result: this.props.result })
+    this.state = {city: this.props.city, limit: this.props.limit, result: this.props.result }
+    this.onLimitChange = this.onLimitChange.bind(this)
+    this.onCityChange = this.onCityChange.bind(this)
+  }
+
+
+  async handleSubmit(event) {
+    event.preventDefault()
+    if(this.state.city !== '' && this.state.limit !== '') {
+      const images =  await fetchSearchImages(this.state.city, this.state.limit);
+      localStorage.setItem('search', JSON.stringify({city: this.state.city, limit: this.state.limit}));
+      this.props.updateSearch(this.state.city, this.state.limit)
+      this.props.updateResult(images)
+    }
   }
 
   async componentWillMount() {
@@ -26,7 +39,7 @@ class SearchBar extends Component {
       this.setState({ limit: this.state.limit, city: event.target.value})
   }
 
-  async onSubmitSearch() {
+  async onSubmitSearch(e) {
     if(this.state.city !== '' && this.state.limit !== '') {
       const images =  await fetchSearchImages(this.state.city, this.state.limit);
       localStorage.setItem('search', JSON.stringify({city: this.state.city, limit: this.state.limit}));
@@ -37,15 +50,18 @@ class SearchBar extends Component {
 
   render() {
     return (
+      <form onSubmit={event => this.onSubmitSearch(event)}>
         <div className='searchbar-div'>
+          
             <input className="country-input" type="text" defaultValue={this.props.city}  placeholder='City' onChange={event => this.onCityChange(event)} />
             <input className="limit-input" type="number" defaultValue={this.props.limit} onChange={event => this.onLimitChange(event)} min='0' max='200' step='1'/>
             <div>
-                <IconButton className="search-icon" size="small" onClick={event => this.onSubmitSearch(event)}>
+                <IconButton className="search-icon" type="submit" value="Submit" size="small" onClick={event => this.onSubmitSearch(event)}>
                     <SearchIcon fontSize="small"/>
                 </IconButton>
             </div>
         </div>
+      </form>
     );
   }
 }
