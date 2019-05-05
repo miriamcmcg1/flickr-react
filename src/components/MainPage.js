@@ -1,14 +1,14 @@
-import React, { Component } from "react"
-import GridImage from "../containers/GridImage"
-import Header from './Header'
+import React, { Component } from "react";
+import GridImage from "../containers/GridImage";
+import Header from "./Header";
 
 class MainPage extends Component {
   render() {
     return (
       <div>
-        <Header isHomePage={true}/>
+        <Header isHomePage={true} />
         <div>
-          <GridImage/>
+          <GridImage />
         </div>
       </div>
     );

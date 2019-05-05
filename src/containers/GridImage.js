@@ -1,8 +1,11 @@
-import { connect } from 'react-redux'
-import GridImage from '../components/GridImage'
+import { connect } from "react-redux";
+import GridImage from "../components/GridImage";
 
 const mapStateToProps = state => ({
-  result: state.result,
-})
+  result: state.result
+});
 
-export default connect(mapStateToProps, null)(GridImage)
+export default connect(
+  mapStateToProps,
+  null
+)(GridImage);

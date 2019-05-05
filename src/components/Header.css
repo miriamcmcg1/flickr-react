@@ -1,36 +1,34 @@
 .navbar {
-    background-color: #333;
-    height: 4em;
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    vertical-align: middle;
-    width: 100%;
+  background-color: #333;
+  height: 4em;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  vertical-align: middle;
+  width: 100%;
 }
 
 .navbar > div {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .title {
-    color: #ffffff;
-    font-size: 30px;
-    font-weight: bold;
-    margin-left: 1em;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 1em;
 }
-
 
 .title-div > a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-
 @media only screen and (max-width: 750px) {
-    .navbar {
-        display: block;
-        height: 5.5em;
-    }
+  .navbar {
+    display: block;
+    height: 5.5em;
+  }
 }
