@@ -1,5 +1,5 @@
 .div-image {
-    position: absolute;
+    position: fixed;
     text-align: center;
     background-color: black;
     top: 4em;
@@ -11,9 +11,19 @@
 .image-div {
     height: 100%;
     background-color: "black";
+    max-width: 100%;
+
 }
 
+
+@media only screen and (max-width: 770px) {
+    .image-div {
+        height: auto;
+    }
+}
 .gridtilebar {
     width: inherit;
     text-align: initial;
 }
+
+

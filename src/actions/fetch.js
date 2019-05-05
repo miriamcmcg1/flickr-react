@@ -5,6 +5,7 @@ export const fetchSearchImages = async function(city, limit) {
 
     const response = await axios.get(url);
     if (response.status === 200) {
+      console.log(response.data.photos.photo)
       let images = response.data.photos.photo.map(img => {
         return {
           url: getUrl({

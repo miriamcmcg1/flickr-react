@@ -28,3 +28,11 @@
 .title-div > a {
     text-decoration: none;
 }
+
+
+@media only screen and (max-width: 750px) {
+    .navbar {
+        display: block;
+        height: 5.5em;
+    }
+}
