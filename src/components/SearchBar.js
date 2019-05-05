@@ -3,16 +3,55 @@ import SearchIcon from '@material-ui/icons/SearchOutlined'
 import IconButton from '@material-ui/core/IconButton'
 import PropTypes from 'prop-types'
 import {fetchSearchImages} from '../actions/fetch'
+import cities from 'cities.json'
+import Autosuggest from 'react-autosuggest'
+
 import './SearchBar.css'
+
+const getSuggestions = value => {
+  const inputValue = value.trim().toLowerCase();
+  const inputLength = inputValue.length;
+
+  return inputLength === 0 ? [] : cities.filter(lang =>
+    lang.name.toLowerCase().slice(0, inputLength) === inputValue
+  );
+};
+
+const getSuggestionValue = suggestion => suggestion.name;
+
+const renderSuggestion = suggestion => (
+  <div>
+    {suggestion.name}
+  </div>
+);
 
 class SearchBar extends Component {
   constructor(props) {
     super(props)
-    this.state = {city: this.props.city, limit: this.props.limit, result: this.props.result }
+    this.state = {
+      city: this.props.city, 
+      limit: this.props.limit, 
+      result: this.props.result,
+      suggestions: []    
+    }
     this.onLimitChange = this.onLimitChange.bind(this)
     this.onCityChange = this.onCityChange.bind(this)
   }
 
+  // Autosuggest will call this function every time you need to update suggestions.
+  // You already implemented this logic above, so just use it.
+  onSuggestionsFetchRequested = ({ value }) => {
+    this.setState({
+      suggestions: getSuggestions(value)
+    });
+  };
+
+  // Autosuggest will call this function every time you need to clear suggestions.
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: []
+    });
+  };
 
   async handleSubmit(event) {
     event.preventDefault()
@@ -35,9 +74,15 @@ class SearchBar extends Component {
     this.setState({ limit: Number(event.target.value), city: this.state.city})
   }
 
-  onCityChange = function(event) {
-      this.setState({ limit: this.state.limit, city: event.target.value})
+  onCityChange = function(event, {newCity}) {
+    console.log(newCity)
+      this.setState({ limit: this.state.limit, city: newCity})
   }
+  onCityChange = (event, { newValue }) => {
+    this.setState({
+      city: newValue
+    });
+  };
 
   async onSubmitSearch(e) {
     if(this.state.city !== '' && this.state.limit !== '') {
@@ -48,18 +93,31 @@ class SearchBar extends Component {
     }
   }
 
+
   render() {
+    const inputProps = {
+      placeholder: 'Type a city',
+      value: this.state.city,
+      onChange: this.onCityChange
+    };
+
     return (
       <form onSubmit={event => this.onSubmitSearch(event)}>
         <div className='searchbar-div'>
-          
-            <input className="country-input" type="text" defaultValue={this.props.city}  placeholder='City' onChange={event => this.onCityChange(event)} />
-            <input className="limit-input" type="number" defaultValue={this.props.limit} onChange={event => this.onLimitChange(event)} min='0' max='100' step='1'/>
-            <div>
-                <IconButton className="search-icon" type="submit" value="Submit" size="small" onClick={event => this.onSubmitSearch(event)}>
-                    <SearchIcon fontSize="small"/>
-                </IconButton>
-            </div>
+          <Autosuggest className="city-input"
+          suggestions={this.state.suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+          />
+          <input className="limit-input" type="number" defaultValue={this.props.limit} onChange={event => this.onLimitChange(event)} min='0' max='100' step='1'/>
+          <div>
+            <IconButton className="search-icon" type="submit" value="Submit" size="small" onClick={event => this.onSubmitSearch(event)}>
+              <SearchIcon fontSize="small"/>
+            </IconButton>
+          </div>
         </div>
       </form>
     );
