@@ -7,9 +7,11 @@ div.MuiGridListTileBar-actionIcon > a.buttonIcon-img {
   color: rgba(255, 255, 255, 0.6);
 }
 
+.MuiGridListTile-imgFullHeight {
+  height: unset;
+}
 @media only screen and (max-width: 750px) {
   .grid-image-div {
-    justify-content: center;
     padding-top: 5.8em;
     margin-left: 0;
   }
