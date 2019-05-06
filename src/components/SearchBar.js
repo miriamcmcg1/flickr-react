@@ -48,19 +48,6 @@ class SearchBar extends Component {
     });
   };
 
-  async handleSubmit(event) {
-    event.preventDefault();
-    if (this.state.city !== "" && this.state.limit !== "") {
-      const images = await fetchSearchImages(this.state.city, this.state.limit);
-      localStorage.setItem(
-        "search",
-        JSON.stringify({ city: this.state.city, limit: this.state.limit })
-      );
-      this.props.updateSearch(this.state.city, this.state.limit);
-      this.props.updateResult(images);
-    }
-  }
-
   async componentWillMount() {
     if (this.state.result.length === 0) {
       const images = await fetchSearchImages(this.state.city, this.state.limit);
@@ -72,9 +59,6 @@ class SearchBar extends Component {
     this.setState({ limit: Number(event.target.value), city: this.state.city });
   };
 
-  onCityChange = function(event, { newCity }) {
-    this.setState({ limit: this.state.limit, city: newCity });
-  };
   onCityChange = (event, { newValue }) => {
     this.setState({
       city: newValue
