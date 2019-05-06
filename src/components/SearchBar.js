@@ -66,6 +66,7 @@ class SearchBar extends Component {
   };
 
   async onSubmitSearch(e) {
+    e.preventDefault();
     if (this.state.city !== "" && this.state.limit !== "") {
       const images = await fetchSearchImages(this.state.city, this.state.limit);
       localStorage.setItem(
