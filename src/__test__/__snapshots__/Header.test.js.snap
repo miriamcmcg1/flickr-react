@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header render should render with SearchBar when isHomepage is set to true 1`] = `
+<div
+  className="navbar"
+>
+  <div
+    className="title-div"
+  >
+    <Link
+      to="/"
+    >
+      <b
+        className="title"
+      >
+        FlickrCity
+      </b>
+    </Link>
+  </div>
+  <ConnectFunction />
+</div>
+`;
+
+exports[`Header render should render without SearchBar when isHomepage is set to false 1`] = `
+<div
+  className="navbar"
+>
+  <div
+    className="title-div"
+  >
+    <Link
+      to="/"
+    >
+      <b
+        className="title"
+      >
+        FlickrCity
+      </b>
+    </Link>
+  </div>
+</div>
+`;

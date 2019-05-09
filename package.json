@@ -23,6 +23,9 @@
     "react-test-renderer": "^16.8.6",
     "redux": "^4.0.1"
   },
+  "jest": {
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

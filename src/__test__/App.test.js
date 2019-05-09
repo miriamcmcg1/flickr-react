@@ -3,6 +3,10 @@ import { shallow } from "enzyme";
 import App from "../components/App";
 import "../setupTests";
 
-it("Renders App", () => {
-  shallow(<App />);
+describe("Render App", () => {
+  describe('render', () => {
+      test('should render App', () => {
+        expect(shallow(<App />)).toMatchSnapshot();
+      });
+  });
 });
